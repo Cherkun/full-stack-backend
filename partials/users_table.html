@@ -1,0 +1,37 @@
+<table>
+    <tr>
+        <th>Plots</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Last Login</th>
+        <th></th>
+    </tr>
+    {section name=i loop=$users}
+    <tr>
+        <td>
+            {if $users[i].plots}
+            {section name=j loop=$users[i].plots}
+            <div class="users_plots"><a onclick="common.plot_edit_window({$users[i].plots[j].id}, event);">{$users[i].plots[j].number}</a></div>
+            {/section}
+            {else}
+            -
+            {/if}
+        </td>
+        <td>{$users[i].first_name}</td>
+        <td>{$users[i].last_name}</td>
+        <td>{$users[i].phone}</td>
+        <td>{$users[i].email}</td>
+        <td>{$users[i].last_login}</td>
+        <td class="right_column">
+            <i class="icon icon_ellipsis" onclick="common.menu_popup_toggle(this, event);">
+                <div class="menu_popup">
+                    <div onclick="common.user_edit_window({$users[i].user_id}, event);">Edit</div>
+                    <div onclick="common.user_delete({$users[i].user_id}, event);">Delete</div>
+                </div>
+            </i>
+        </td>
+    </tr>
+    {/section}
+</table>
